@@ -12,3 +12,13 @@ void loop() {
   // put your main code here, to run repeatedly:
 
 }
+
+void initESPNow() {
+  WiFi.disconnect();
+  if (esp_now_init() == ESP_OK) {
+    Serial.println("ESPNow Init Success");
+  } else {
+    Serial.println("ESPNowinit failed");
+    ESP.restart();
+  }
+}
