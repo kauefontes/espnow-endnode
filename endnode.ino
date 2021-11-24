@@ -6,6 +6,7 @@
 void setup()
 {
   initialSetup();
+  setupAP();
 }
 
 void initialSetup()
@@ -13,6 +14,23 @@ void initialSetup()
   Serial.begin(115200);
   Serial.println("Starting endnode...");
   WiFi.mode(WIFI_AP);
+}
+
+void setupAP()
+{
+  String prefix = "endnode: ";
+  String macAddress = WiFi.macAddress();
+  String ssid = prefix + macAddress;
+  String password = "9876543210";
+  bool result = WiFi.softAP(ssid.c_str(), password.c_str(), CHANNEL, 0);
+  if (!result)
+  {
+    Serial.println("AP setup failed");
+  }
+  else
+  {
+    Serial.println("AP Config Success. Broadcasting with AP: " + String(ssid));
+  }
 }
 
 void startEspnow()
