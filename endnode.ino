@@ -6,18 +6,19 @@
 void setup()
 {
   initialSetup();
-  setupAP();
+  setupAccessPoint();
   startEspnow();
 }
 
 void initialSetup()
 {
   Serial.begin(115200);
+  Serial.println(" ");
   Serial.println("Starting endnode...");
   WiFi.mode(WIFI_AP);
 }
 
-void setupAP()
+void setupAccessPoint()
 {
   String prefix = "endnode: ";
   String macAddress = WiFi.macAddress();
@@ -43,7 +44,7 @@ void startEspnow()
   }
   else
   {
-    Serial.println("ESPNowinit failed, rebooting now...");
+    Serial.println("ESPNow init failed, rebooting now...");
     ESP.restart();
   }
   esp_now_register_recv_cb(onDataRecv);
