@@ -61,4 +61,29 @@ void onDataRecv(const uint8_t *mac_addr, const uint8_t *data, int data_len)
   Serial.println("");
 }
 
+void handleCommand()
+{
+  bool isRead = false;
+  if (isRead)
+  {
+    isRead = false;
+    startReader();
+  }
+  else
+  {
+    isRead = true;
+    startActuator();
+  }
+}
+
+void startActuator()
+{
+  Serial.println("Watering the garden...");
+}
+
+void startReader()
+{
+  Serial.println("Gathering information...");
+}
+
 void loop() {}
